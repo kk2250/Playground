@@ -31,7 +31,85 @@ def draw_board(board):
     Hint: Write this function first!
     """
     turtle.clear()
-    pass # your code here
+    qwert = turtle.Turtle()
+    turtle.setworldcoordinates(-50,-50,350,350)
+    turtle.bgcolor("black")
+    qwert.color("white")
+    qwert.hideturtle()
+    # qwert.speed()
+    qwert.left(90)
+    qwert.forward(300)
+    for i in range(3):
+        qwert.right(90)
+        qwert.forward(300)
+    for i in range(100, 301, 200):
+        qwert.right(90)
+        qwert.forward(i)
+    for i in range(100, 301, 200):
+        qwert.left(90)
+        qwert.forward(i)
+    for i in range(2):
+        qwert.right(90)
+        qwert.forward(100)
+    qwert.right(90)
+    qwert.forward(300)
+    for i in range(100, 301, 200):
+        qwert.left(90)
+        qwert.forward(i)
+    for i in range(len(the_board)):
+        if the_board[i] == "X":
+            if i in [0,1,2]:
+                qwert.penup()
+                qwert.setposition((i*100)+25,225)
+                qwert.setheading(45)
+                qwert.pendown()
+                qwert.forward(70.71)
+                qwert.penup()
+                qwert.setposition((i*100)+75,225)
+                qwert.setheading(135)
+                qwert.pendown()
+                qwert.forward(70.71)
+            elif i in [3,4,5]:
+                qwert.penup()
+                qwert.setposition(((i-3)*100)+25,125)
+                qwert.setheading(45)
+                qwert.pendown()
+                qwert.forward(70.71)
+                qwert.penup()
+                qwert.setposition(((i-3)*100)+75,125)
+                qwert.setheading(135)
+                qwert.pendown()
+                qwert.forward(70.71)
+            elif i in [6,7,8]:
+                qwert.penup()
+                qwert.setposition(((i-6)*100)+25,25)
+                qwert.setheading(45)
+                qwert.pendown()
+                qwert.forward(70.71)
+                qwert.penup()
+                qwert.setposition(((i-6)*100)+75,25)
+                qwert.setheading(135)
+                qwert.pendown()
+                qwert.forward(70.71)
+        elif the_board[i] == "O":
+            if i in [0,1,2]:
+                qwert.penup()
+                qwert.setposition((i*100)+75,250)
+                qwert.setheading(90)
+                qwert.pendown()
+                qwert.circle(25)
+            elif i in [3,4,5]:
+                qwert.penup()
+                qwert.setposition(((i-3)*100)+75,150)
+                qwert.setheading(90)
+                qwert.pendown()
+                qwert.circle(25)
+            elif i in [6,7,8]:
+                qwert.penup()
+                qwert.setposition(((i-6)*100)+75,50)
+                qwert.setheading(90)
+                qwert.pendown()
+                qwert.circle(25)
     turtle.update()
 
 def do_user_move(board, x, y):
@@ -54,7 +132,63 @@ def do_user_move(board, x, y):
     otherise True.
     """
     print("user clicked at "+str(x)+","+str(y))
-    pass # your code here
+    if 0 < x < 100:
+        if 0 < y < 100:
+            if the_board[6] == "_":
+                the_board[6] = "O"
+            else:
+                return False
+        elif 100 < y < 200:
+            if the_board[3] == "_":
+                the_board[3] = "O"
+            else:
+                return False
+        elif 200 < y < 300:
+            if the_board[0] == "_":
+                the_board[0] = "O"
+            else:
+                return False
+        else:
+            return False
+    elif 100 < x < 200:
+        if 0 < y < 100:
+            if the_board[7] == "_":
+                the_board[7] = "O"
+            else:
+                return False
+        elif 100 < y < 200:
+            if the_board[4] == "_":
+                the_board[4] = "O"
+            else:
+                return False
+        elif 200 < y < 300:
+            if the_board[1] == "_":
+                the_board[1] = "O"
+            else:
+                return False
+        else:
+            return False
+    elif 200 < x < 300:
+        if 0 < y < 100:
+            if the_board[8] == "_":
+                the_board[8] = "O"
+            else:
+                return False
+        elif 100 < y < 200:
+            if the_board[5] == "_":
+                the_board[5] = "O"
+            else:
+                return False
+        elif 200 < y < 300:
+            if the_board[2] == "_":
+                the_board[2] = "O"
+            else:
+                return False
+        else:
+            return False
+    else:
+        return False
+    return True
 
 def check_game_over(board):
     """
@@ -70,7 +204,89 @@ def check_game_over(board):
     in preparation for the next round. If the game is over,
     return True, otherwise False.
     """
-    pass # your code here
+    ii = "X"
+    if the_board[0] == ii:
+        if the_board[1] == ii:
+            if the_board[2] == ii:
+                print("Computer WIN!!")
+                return True
+        if the_board[3] == ii:
+            if the_board[6] == ii:
+                print("Computer WIN!!")
+                return True
+        if the_board[4] == ii:
+            if the_board[8] == ii:
+                print("Computer WIN!!")
+                return True
+    if the_board[1] == ii:
+        if the_board[4] == ii:
+            if the_board[7] == ii:
+                print("Computer WIN!!")
+                return True
+    if the_board[2] == ii:
+        if the_board[5] == ii:
+            if the_board[8] == ii:
+                print("Computer WIN!!")
+                return True
+        if the_board[4] == ii:
+            if the_board[6] == ii:
+                print("Computer WIN!!")
+                return True
+    if the_board[3] == ii:
+        if the_board[4] == ii:
+            if the_board[5] == ii:
+                print("Computer WIN!!")
+                return True
+    if the_board[6] == ii:
+        if the_board[7] == ii:
+            if the_board[8] == ii:
+                print("Computer WIN!!")
+                return True
+    ii = "O"
+    if the_board[0] == ii:
+        if the_board[1] == ii:
+            if the_board[2] == ii:
+                print("You WIN!!")
+                return True
+        if the_board[3] == ii:
+            if the_board[6] == ii:
+                print("You WIN!!")
+                return True
+        if the_board[4] == ii:
+            if the_board[8] == ii:
+                print("You WIN!!")
+                return True
+    if the_board[1] == ii:
+        if the_board[4] == ii:
+            if the_board[7] == ii:
+                print("You WIN!!")
+                return True
+    if the_board[2] == ii:
+        if the_board[5] == ii:
+            if the_board[8] == ii:
+                print("You WIN!!")
+                return True
+        if the_board[4] == ii:
+            if the_board[6] == ii:
+                print("You WIN!!")
+                return True
+    if the_board[3] == ii:
+        if the_board[4] == ii:
+            if the_board[5] == ii:
+                print("You WIN!!")
+                return True
+    if the_board[6] == ii:
+        if the_board[7] == ii:
+            if the_board[8] == ii:
+                print("You WIN!!")
+                return True
+    x = 0
+    for _ in the_board:
+        if _ == "X" or _ == "O":
+            x += 1
+    if x == 9:
+        print("It's a stalemate.")
+        return True
 
 def do_computer_move(board):
     """
@@ -87,7 +303,424 @@ def do_computer_move(board):
     next move may be any random, valid position
     (selected with the random.randint function).
     """
-    pass # your code here
+    ii = "x"
+    for i in range(2):
+        if i == 1:
+            ii = "O"
+        if the_board[0] == ii:
+            if the_board[1] == ii:
+                if the_board[2] == "_":
+                    the_board[2] = "X"
+                    return
+            if the_board[2] == ii:
+                if the_board[2] == "_":
+                    the_board[2] = "X"
+                    return
+            if the_board[3] == ii:
+                if the_board[6] == "_":
+                    the_board[6] = "X"
+                    return
+            if the_board[4] == ii:
+                if the_board[8] == "_":
+                    the_board[8] = "X"
+                    return
+            if the_board[6] == ii:
+                if the_board[3] == "_":
+                    the_board[3] = "X"
+                    return
+            if the_board[8] == ii:
+                if the_board[4] == "_":
+                    the_board[4] = "X"
+                    return
+        if the_board[1] == ii:
+            if the_board[0] == ii:
+                if the_board[2] == "_":
+                    the_board[2] = "X"
+                    return
+            if the_board[2] == ii:
+                if the_board[0] == "_":
+                    the_board[0] = "X"
+                    return
+            if the_board[4] == ii:
+                if the_board[7] == "_":
+                    the_board[7] = "X"
+                    return
+            if the_board[7] == ii:
+                if the_board[4] == "_":
+                    the_board[4] = "X"
+                    return
+        if the_board[2] == ii:
+            if the_board[0] == ii:
+                if the_board[1] == "_":
+                    the_board[1] = "X"
+                    return
+            if the_board[1] == ii:
+                if the_board[0] == "_":
+                    the_board[0] = "X"
+                    return
+            if the_board[4] == ii:
+                if the_board[6] == "_":
+                    the_board[6] = "X"
+                    return
+            if the_board[5] == ii:
+                if the_board[8] == "_":
+                    the_board[8] = "X"
+                    return
+            if the_board[6] == ii:
+                if the_board[4] == "_":
+                    the_board[4] = "X"
+                    return
+            if the_board[8] == ii:
+                if the_board[5] == "_":
+                    the_board[5] = "X"
+                    return
+        if the_board[3] == ii:
+            if the_board[0] == ii:
+                if the_board[6] == "_":
+                    the_board[6] = "X"
+                    return
+            if the_board[4] == ii:
+                if the_board[5] == "_":
+                    the_board[5] = "X"
+                    return
+            if the_board[5] == ii:
+                if the_board[4] == "_":
+                    the_board[4] = "X"
+                    return
+            if the_board[6] == ii:
+                if the_board[0] == "_":
+                    the_board[0] = "X"
+                    return
+        if the_board[4] == ii:
+            if the_board[0] == ii:
+                if the_board[8] == "_":
+                    the_board[8] = "X"
+                    return
+            if the_board[1] == ii:
+                if the_board[7] == "_":
+                    the_board[7] = "X"
+                    return
+            if the_board[2] == ii:
+                if the_board[6] == "_":
+                    the_board[6] = "X"
+                    return
+            if the_board[3] == ii:
+                if the_board[5] == "_":
+                    the_board[5] = "X"
+                    return
+            if the_board[5] == ii:
+                if the_board[3] == "_":
+                    the_board[3] = "X"
+                    return
+            if the_board[6] == ii:
+                if the_board[2] == "_":
+                    the_board[2] = "X"
+                    return
+            if the_board[7] == ii:
+                if the_board[1] == "_":
+                    the_board[1] = "X"
+                    return
+            if the_board[8] == ii:
+                if the_board[0] == "_":
+                    the_board[0] = "X"
+                    return
+        if the_board[5] == ii:
+            if the_board[2] == ii:
+                if the_board[8] == "_":
+                    the_board[8] = "X"
+                    return
+            if the_board[3] == ii:
+                if the_board[4] == "_":
+                    the_board[4] = "X"
+                    return
+            if the_board[4] == ii:
+                if the_board[3] == "_":
+                    the_board[3] = "X"
+                    return
+            if the_board[8] == ii:
+                if the_board[2] == "_":
+                    the_board[2] = "X"
+                    return
+        if the_board[6] == ii:
+            if the_board[0] == ii:
+                if the_board[3] == "_":
+                    the_board[3] = "X"
+                    return
+            if the_board[2] == ii:
+                if the_board[4] == "_":
+                    the_board[4] = "X"
+                    return
+            if the_board[3] == ii:
+                if the_board[0] == "_":
+                    the_board[0] = "X"
+                    return
+            if the_board[4] == ii:
+                if the_board[2] == "_":
+                    the_board[2] = "X"
+                    return
+            if the_board[7] == ii:
+                if the_board[8] == "_":
+                    the_board[8] = "X"
+                    return
+            if the_board[8] == ii:
+                if the_board[7] == "_":
+                    the_board[7] = "X"
+                    return
+        if the_board[7] == ii:
+            if the_board[1] == ii:
+                if the_board[4] == "_":
+                    the_board[4] = "X"
+                    return
+            if the_board[4] == ii:
+                if the_board[1] == "_":
+                    the_board[1] = "X"
+                    return
+            if the_board[6] == ii:
+                if the_board[8] == "_":
+                    the_board[8] = "X"
+                    return
+            if the_board[8] == ii:
+                if the_board[6] == "_":
+                    the_board[6] = "X"
+                    return
+        if the_board[8] == ii:
+            if the_board[0] == ii:
+                if the_board[4] == "_":
+                    the_board[4] = "X"
+                    return
+            if the_board[2] == ii:
+                if the_board[5] == "_":
+                    the_board[5] = "X"
+                    return
+            if the_board[4] == ii:
+                if the_board[0] == "_":
+                    the_board[0] = "X"
+                    return
+            if the_board[5] == ii:
+                if the_board[2] == "_":
+                    the_board[2] = "X"
+                    return
+            if the_board[6] == ii:
+                if the_board[7] == "_":
+                    the_board[7] = "X"
+                    return
+            if the_board[7] == ii:
+                if the_board[6] == "_":
+                    the_board[6] = "X"
+                    return
+    # ii = "O"
+    # if the_board[0] == ii:
+    #     if the_board[1] == ii:
+    #         if the_board[2] == "_":
+    #             the_board[2] = "X"
+    #             return
+    #     if the_board[2] == ii:
+    #         if the_board[2] == "_":
+    #             the_board[2] = "X"
+    #             return
+    #     if the_board[3] == ii:
+    #         if the_board[6] == "_":
+    #             the_board[6] = "X"
+    #             return
+    #     if the_board[4] == ii:
+    #         if the_board[8] == "_":
+    #             the_board[8] = "X"
+    #             return
+    #     if the_board[6] == ii:
+    #         if the_board[3] == "_":
+    #             the_board[3] = "X"
+    #             return
+    #     if the_board[8] == ii:
+    #         if the_board[4] == "_":
+    #             the_board[4] = "X"
+    #             return
+    # if the_board[1] == ii:
+    #     if the_board[0] == ii:
+    #         if the_board[2] == "_":
+    #             the_board[2] = "X"
+    #             return
+    #     if the_board[2] == ii:
+    #         if the_board[0] == "_":
+    #             the_board[0] = "X"
+    #             return
+    #     if the_board[4] == ii:
+    #         if the_board[7] == "_":
+    #             the_board[7] = "X"
+    #             return
+    #     if the_board[7] == ii:
+    #         if the_board[4] == "_":
+    #             the_board[4] = "X"
+    #             return
+    # if the_board[2] == ii:
+    #     if the_board[0] == ii:
+    #         if the_board[1] == "_":
+    #             the_board[1] = "X"
+    #             return
+    #     if the_board[1] == ii:
+    #         if the_board[0] == "_":
+    #             the_board[0] = "X"
+    #             return
+    #     if the_board[4] == ii:
+    #         if the_board[6] == "_":
+    #             the_board[6] = "X"
+    #             return
+    #     if the_board[5] == ii:
+    #         if the_board[8] == "_":
+    #             the_board[8] = "X"
+    #             return
+    #     if the_board[6] == ii:
+    #         if the_board[4] == "_":
+    #             the_board[4] = "X"
+    #             return
+    #     if the_board[8] == ii:
+    #         if the_board[5] == "_":
+    #             the_board[5] = "X"
+    #             return
+    # if the_board[3] == ii:
+    #     if the_board[0] == ii:
+    #         if the_board[6] == "_":
+    #             the_board[6] = "X"
+    #             return
+    #     if the_board[4] == ii:
+    #         if the_board[5] == "_":
+    #             the_board[5] = "X"
+    #             return
+    #     if the_board[5] == ii:
+    #         if the_board[4] == "_":
+    #             the_board[4] = "X"
+    #             return
+    #     if the_board[6] == ii:
+    #         if the_board[0] == "_":
+    #             the_board[0] = "X"
+    #             return
+    # if the_board[4] == ii:
+    #     if the_board[0] == ii:
+    #         if the_board[8] == "_":
+    #             the_board[8] = "X"
+    #             return
+    #     if the_board[1] == ii:
+    #         if the_board[7] == "_":
+    #             the_board[7] = "X"
+    #             return
+    #     if the_board[2] == ii:
+    #         if the_board[6] == "_":
+    #             the_board[6] = "X"
+    #             return
+    #     if the_board[3] == ii:
+    #         if the_board[5] == "_":
+    #             the_board[5] = "X"
+    #             return
+    #     if the_board[5] == ii:
+    #         if the_board[3] == "_":
+    #             the_board[3] = "X"
+    #             return
+    #     if the_board[6] == ii:
+    #         if the_board[2] == "_":
+    #             the_board[2] = "X"
+    #             return
+    #     if the_board[7] == ii:
+    #         if the_board[1] == "_":
+    #             the_board[1] = "X"
+    #             return
+    #     if the_board[8] == ii:
+    #         if the_board[0] == "_":
+    #             the_board[0] = "X"
+    #             return
+    # if the_board[5] == ii:
+    #     if the_board[2] == ii:
+    #         if the_board[8] == "_":
+    #             the_board[8] = "X"
+    #             return
+    #     if the_board[3] == ii:
+    #         if the_board[4] == "_":
+    #             the_board[4] = "X"
+    #             return
+    #     if the_board[4] == ii:
+    #         if the_board[3] == "_":
+    #             the_board[3] = "X"
+    #             return
+    #     if the_board[8] == ii:
+    #         if the_board[2] == "_":
+    #             the_board[2] = "X"
+    #             return
+    # if the_board[6] == ii:
+    #     if the_board[0] == ii:
+    #         if the_board[3] == "_":
+    #             the_board[3] = "X"
+    #             return
+    #     if the_board[2] == ii:
+    #         if the_board[4] == "_":
+    #             the_board[4] = "X"
+    #             return
+    #     if the_board[3] == ii:
+    #         if the_board[0] == "_":
+    #             the_board[0] = "X"
+    #             return
+    #     if the_board[4] == ii:
+    #         if the_board[2] == "_":
+    #             the_board[2] = "X"
+    #             return
+    #     if the_board[7] == ii:
+    #         if the_board[8] == "_":
+    #             the_board[8] = "X"
+    #             return
+    #     if the_board[8] == ii:
+    #         if the_board[7] == "_":
+    #             the_board[7] = "X"
+    #             return
+    # if the_board[7] == ii:
+    #     if the_board[1] == ii:
+    #         if the_board[4] == "_":
+    #             the_board[4] = "X"
+    #             return
+    #     if the_board[4] == ii:
+    #         if the_board[1] == "_":
+    #             the_board[1] = "X"
+    #             return
+    #     if the_board[6] == ii:
+    #         if the_board[8] == "_":
+    #             the_board[8] = "X"
+    #             return
+    #     if the_board[8] == ii:
+    #         if the_board[6] == "_":
+    #             the_board[6] = "X"
+    #             return
+    # if the_board[8] == ii:
+    #     if the_board[0] == ii:
+    #         if the_board[4] == "_":
+    #             the_board[4] = "X"
+    #             return
+    #     if the_board[2] == ii:
+    #         if the_board[5] == "_":
+    #             the_board[5] = "X"
+    #             return
+    #     if the_board[4] == ii:
+    #         if the_board[0] == "_":
+    #             the_board[0] = "X"
+    #             return
+    #     if the_board[5] == ii:
+    #         if the_board[2] == "_":
+    #             the_board[2] = "X"
+    #             return
+    #     if the_board[6] == ii:
+    #         if the_board[7] == "_":
+    #             the_board[7] = "X"
+    #             return
+    #     if the_board[7] == ii:
+    #         if the_board[6] == "_":
+    #             the_board[6] = "X"
+    #             return
+    x = 0
+    while x < 9:
+        x = 0
+        for _ in the_board:
+            if _ == "X" or _ == "O":
+                x += 1
+        com_m = random.randint(0,8)
+        if the_board[com_m] == "_":
+            the_board[com_m] = "X"
+            break
+    return
 
 def clickhandler(x, y):
     """
@@ -116,6 +749,8 @@ def main():
     turtle.hideturtle()
     turtle.onscreenclick(clickhandler)
     draw_board(the_board)
+    print(1)
     turtle.mainloop()
+    print(2)
 
 main()
