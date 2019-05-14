@@ -1,3 +1,3 @@
 # TicTacToe
-# Method
-# Turtle, Python3
+## Method
+- Turtle, Python3
